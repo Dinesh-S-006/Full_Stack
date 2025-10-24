@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nandha Engineering College - Annual Day Points</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+            background: white;
+            padding: 15px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Nandha Engineering College</h1>
+    <h2>Annual Day Certificate Portal</h2>
+
+    <h3>Select Department</h3>
+    <div id="departments">
+        <button onclick="selectDept('CSE')">CSE</button>
+        <button onclick="selectDept('ECE')">ECE</button>
+        <button onclick="selectDept('EEE')">EEE</button>
+        <button onclick="selectDept('Cyber Security')">Cyber Security</button>
+        <button onclick="selectDept('Agri')">Agri</button>
+        <button onclick="selectDept('IT')">IT</button>
+        <button onclick="selectDept('IoT')">IoT</button>
+
+
+
+
+
+    </div>
+
+    <div id="years"></div>
+    <div id="leaderboard"></div>
+
+    <script>
+        const data = {}; // store points by dept -> year -> students
+
+        function selectDept(dept) {
+            document.getElementById('years').innerHTML = `
+        <h3>${dept} Department - Select Year</h3>
+        <button onclick="showLeaderboard('${dept}',1)">1st Year</button>
+        <button onclick="showLeaderboard('${dept}',2)">2nd Year</button>
+        <button onclick="showLeaderboard('${dept}',3)">3rd Year</button>
+        <button onclick="showLeaderboard('${dept}',4)">4th Year</button>`;
+        }
+
+        function showLeaderboard(dept, year) {
+            if (!data[dept]) data[dept] = {};
+            if (!data[dept][year]) data[dept][year] = [];
+
+            let students = data[dept][year];
+            students.sort((a, b) => b.points - a.points);
+
+            let tableRows = students.map((s, i) => <tr><td>${i + 1}</td><td>${s.name}</td><td>${s.reg}</td><td>${s.points}</td></tr>).join('');
+            if (!tableRows) tableRows = <tr><td colspan="4">No records yet</td></tr>;
+
+            document.getElementById('leaderboard').innerHTML = `
+        <h3>${dept} - Year ${year} Leaderboard</h3>
+        <table>
+          <tr><th>Rank</th><th>Name</th><th>Register No</th><th>Points</th></tr>
+          ${tableRows}
+        </table>
+
+        <form onsubmit="addStudent(event,'${dept}',${year})">
+          <input id="name" placeholder="Student Name" required><br><br>
+          <input id="reg" placeholder="Register No" required><br><br>
+          <select id="type">
+            <option value="1">Participant (1 Point)</option>
+            <option value="2">Runner (2 Points)</option>
+            <option value="3">Winner (3 Points)</option>
+          </select><br><br>
+          <input type="file" id="cert" accept="image/*"><br><br>
+          <button type="submit">Add Certificate</button>
+        </form>`;
+        }
+
+        function addStudent(e, dept, year) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const reg = document.getElementById('reg').value;
+            const type = parseInt(document.getElementById('type').value);
+
+            let students = data[dept][year];
+            let s = students.find(stu => stu.reg === reg);
+            if (s) s.points += type;
+            else students.push({ name, reg, points: type });
+
+            showLeaderboard(dept, year);
+        }
+    </script>
+
+</body>
+
+</html>
