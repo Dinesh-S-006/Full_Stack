@@ -1,99 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Nandha Engineering College - Annual Day Points</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #f5f5f5;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <title>Nandha Engineering College - Annual Day Points</title>
 
-        button {
-            margin: 5px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-        }
+  <style>
+    /* ✅ Paste the full CSS I gave you earlier here */
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: #f4f7fc;
+      text-align: center;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
 
-        button:hover {
-            background: #0056b3;
-        }
+    h1 {
+      margin-top: 20px;
+      color: #004aad;
+    }
 
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 60%;
-        }
+    h2 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
 
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
+    button {
+      margin: 8px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
 
-        form {
-            margin-top: 20px;
-            background: white;
-            padding: 15px;
-            display: inline-block;
-            border-radius: 10px;
-        }
-    </style>
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #0056b3, #003f8a);
+    }
+
+    table {
+      margin: 25px auto;
+      border-collapse: collapse;
+      width: 70%;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+      background: #007bff;
+      color: white;
+      padding: 12px;
+    }
+
+    td {
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f6ff;
+    }
+
+    form {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select {
+      width: 220px;
+      padding: 8px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 4px #007bff;
+    }
+  </style>
 </head>
 
 <body>
+  <h1>Nandha Engineering College</h1>
+  <h2>Annual Day Certificate Portal</h2>
 
-    <h1>Nandha Engineering College</h1>
-    <h2>Annual Day Certificate Portal</h2>
+  <h3>Select Department</h3>
+  <div id="departments">
+    <button onclick="selectDept('CSE')">CSE</button>
+    <button onclick="selectDept('ECE')">ECE</button>
+    <button onclick="selectDept('EEE')">EEE</button>
+    <button onclick="selectDept('Cyber Security')">Cyber Security</button>
+    <button onclick="selectDept('Agri')">Agri</button>
+    <button onclick="selectDept('IT')">IT</button>
+    <button onclick="selectDept('IoT')">IoT</button>
+  </div>
 
-    <h3>Select Department</h3>
-    <div id="departments">
-        <button onclick="selectDept('CSE')">CSE</button>
-        <button onclick="selectDept('ECE')">ECE</button>
-        <button onclick="selectDept('EEE')">EEE</button>
-        <button onclick="selectDept('Cyber Security')">Cyber Security</button>
-        <button onclick="selectDept('Agri')">Agri</button>
-        <button onclick="selectDept('IT')">IT</button>
-        <button onclick="selectDept('IoT')">IoT</button>
+  <div id="years"></div>
+  <div id="leaderboard"></div>
 
+  <script>
+    // ✅ Paste the full JS code I gave earlier here
+    const data = {};
 
-
-
-
-    </div>
-
-    <div id="years"></div>
-    <div id="leaderboard"></div>
-
-    <script>
-        const data = {}; // store points by dept -> year -> students
-
-        function selectDept(dept) {
-            document.getElementById('years').innerHTML = `
+    function selectDept(dept) {
+      document.getElementById('years').innerHTML = `
         <h3>${dept} Department - Select Year</h3>
         <button onclick="showLeaderboard('${dept}',1)">1st Year</button>
         <button onclick="showLeaderboard('${dept}',2)">2nd Year</button>
         <button onclick="showLeaderboard('${dept}',3)">3rd Year</button>
-        <button onclick="showLeaderboard('${dept}',4)">4th Year</button>`;
-        }
+        <button onclick="showLeaderboard('${dept}',4)">4th Year</button>
+      `;
+      document.getElementById('leaderboard').innerHTML = "";
+    }
 
-        function showLeaderboard(dept, year) {
-            if (!data[dept]) data[dept] = {};
-            if (!data[dept][year]) data[dept][year] = [];
+    function showLeaderboard(dept, year) {
+      if (!data[dept]) data[dept] = {};
+      if (!data[dept][year]) data[dept][year] = [];
 
-            let students = data[dept][year];
-            students.sort((a, b) => b.points - a.points);
+      const students = data[dept][year];
+      students.sort((a, b) => b.points - a.points);
 
-            let tableRows = students.map((s, i) => <tr><td>${i + 1}</td><td>${s.name}</td><td>${s.reg}</td><td>${s.points}</td></tr>).join('');
-            if (!tableRows) tableRows = <tr><td colspan="4">No records yet</td></tr>;
+      let tableRows = students
+        .map(
+          (s, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${s.name}</td>
+              <td>${s.reg}</td>
+              <td>${s.points}</td>
+            </tr>`
+        )
+        .join('');
 
-            document.getElementById('leaderboard').innerHTML = `
+      if (!tableRows)
+        tableRows = `<tr><td colspan="4">No records yet</td></tr>`;
+
+      document.getElementById('leaderboard').innerHTML = `
         <h3>${dept} - Year ${year} Leaderboard</h3>
         <table>
           <tr><th>Rank</th><th>Name</th><th>Register No</th><th>Points</th></tr>
@@ -110,24 +164,32 @@
           </select><br><br>
           <input type="file" id="cert" accept="image/*"><br><br>
           <button type="submit">Add Certificate</button>
-        </form>`;
+        </form>
+      `;
+    }
+
+    function addStudent(e, dept, year) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const reg = document.getElementById('reg').value.trim();
+      const type = parseInt(document.getElementById('type').value);
+
+      const students = data[dept][year];
+      let existing = students.find(s => s.reg === reg);
+
+      if (existing) {
+        existing.points += type;
+        alert(`${existing.name}'s points updated!`);
+      } else {
+        if (students.length >= 60) {
+          alert("Maximum of 60 students reached for this department-year!");
+          return;
         }
-
-        function addStudent(e, dept, year) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const reg = document.getElementById('reg').value;
-            const type = parseInt(document.getElementById('type').value);
-
-            let students = data[dept][year];
-            let s = students.find(stu => stu.reg === reg);
-            if (s) s.points += type;
-            else students.push({ name, reg, points: type });
-
-            showLeaderboard(dept, year);
-        }
-    </script>
-
+        students.push({ name, reg, points: type });
+        alert(`New student added: ${name}`);
+      }
+      showLeaderboard(dept, year);
+    }
+  </script>
 </body>
-
 </html>
