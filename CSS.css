@@ -1,0 +1,39 @@
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: #f4f7fc;
+    text-align: center;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 20px;
+    color: #004aad;
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #333;
+    margin-top: 20px;
+}
+
+button {
+    margin: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(13
