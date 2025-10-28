@@ -1,4 +1,4 @@
-/* body {
+ body {
     font-family: "Poppins", Arial, sans-serif;
     background: #f4f7fc;
     text-align: center;
@@ -36,24 +36,9 @@ button {
 
 button:hover {
     transform: scale(1.05);
-    background: linear-gradient(13 */
+    background: linear-gradient(13 
 
 
 
-
-body {
-    background-color: #f0f8ff;
-    /* Light blue background */
-    text-align: center;
-    margin-top: 200px;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    color: #ff6600;
-    /* Orange text */
-    font-size: 60px;
-    text-shadow: 2px 2px 5px gray;
-}
 
                                 
