@@ -2,254 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Nandha Engineering College - Annual Day Points</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- General Styles --- */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #eef2f3, #8e9eab);
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            color: #333;
-        }
-
-        h1 {
-            margin-top: 40px;
-            font-size: 48px;
-            color: #004aad;
-        }
-
-        h2 {
-            font-size: 28px;
-            color: #007bff;
-            margin-bottom: 30px;
-        }
-
-        h3 {
-            color: #333;
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-
-        /* --- Button Styles --- */
-        button {
-            margin: 8px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        button:hover {
-            transform: scale(1.08);
-            background: linear-gradient(135deg, #0056b3, #003f8a);
-        }
-
-        /* --- Table Styles --- */
-        table {
-            margin: 25px auto;
-            border-collapse: collapse;
-            width: 90%;
-            background: #ffffffdd;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        th {
-            background: #007bff;
-            color: white;
-            padding: 14px;
-            font-size: 16px;
-        }
-
-        td {
-            border-bottom: 1px solid #ccc;
-            padding: 12px;
-            font-size: 15px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f6ff;
-        }
-
-        /* --- Form Styles --- */
-        form {
-            margin-top: 20px;
-            background: #ffffffdd;
-            padding: 25px;
-            display: inline-block;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        input,
-        select {
-            width: 250px;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 6px #007bff66;
-        }
-
-        /* --- Certificate Image --- */
-        img.cert-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            object-fit: cover;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        /* --- Department Buttons Container --- */
-        #departments {
-            margin: 20px 0;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Nandha Engineering College - Annual Day Points</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Nandha Engineering College</h1>
-    <h2>Annual Day Points Portal</h2>
+    <h1>Nandha Engineering College</h1>
+    <h2>Annual Day Points Portal</h2>
 
-    <h3>Select Department</h3>
-    <div id="departments">
-        <button onclick="selectDept('Agricultural Engineering')">Agricultural Engineering</button>
-        <button onclick="selectDept('Artificial Intelligence and Data Science')">Artificial Intelligence and Data
-            Science</button>
-        <button onclick="selectDept('Chemical Engineering')">Chemical Engineering</button>
-        <button onclick="selectDept('Information Technology')">Information Technology</button>
-        <button onclick="selectDept('Biomedical Engineering')">Biomedical Engineering</button>
-        <button onclick="selectDept('Civil Engineering')">Civil Engineering</button>
-        <button onclick="selectDept('Computer Science and Engineering')">Computer Science and Engineering</button>
-        <button onclick="selectDept('Cyber Security')">Cyber Security</button>
-        <button onclick="selectDept('Internet of Things')">Internet of Things</button>
-        <button onclick="selectDept('Electronics and Communication Engineering')">Electronics and Communication
-            Engineering</button>
-        <button onclick="selectDept('Mechanical Engineering')">Mechanical Engineering</button>
-    </div>
+    <h3>Select Department</h3>
+    <div id="departments">
+        <button onclick="selectDept('Agricultural Engineering')">Agricultural Engineering</button>
+        <button onclick="selectDept('Artificial Intelligence and Data Science')">Artificial Intelligence and Data
+            Science</button>
+        <button onclick="selectDept('Chemical Engineering')">Chemical Engineering</button>
+        <button onclick="selectDept('Information Technology')">Information Technology</button>
+        <button onclick="selectDept('Biomedical Engineering')">Biomedical Engineering</button>
+        <button onclick="selectDept('Civil Engineering')">Civil Engineering</button>
+        <button onclick="selectDept('Computer Science and Engineering')">Computer Science and Engineering</button>
+        <button onclick="selectDept('Cyber Security')">Cyber Security</button>
+        <button onclick="selectDept('Internet of Things')">Internet of Things</button>
+        <button onclick="selectDept('Electronics and Communication Engineering')">Electronics and Communication
+            Engineering</button>
+        <button onclick="selectDept('Mechanical Engineering')">Mechanical Engineering</button>
+    </div>
 
-    <div id="years"></div>
-    <div id="leaderboard"></div>
+    <div id="years"></div>
+    <div id="leaderboard"></div>
 
-    <script>
-        const data = {};
-
-        function selectDept(dept) {
-            document.getElementById('years').innerHTML = `
-                <h3>${dept} Department - Select Year</h3>
-                <button onclick="showLeaderboard('${dept}',1)">1st Year</button>
-                <button onclick="showLeaderboard('${dept}',2)">2nd Year</button>
-                <button onclick="showLeaderboard('${dept}',3)">3rd Year</button>
-                <button onclick="showLeaderboard('${dept}',4)">4th Year</button>
-            `;
-            document.getElementById('leaderboard').innerHTML = "";
-        }
-
-        function showLeaderboard(dept, year) {
-            if (!data[dept]) data[dept] = {};
-            if (!data[dept][year]) data[dept][year] = [];
-
-            const students = data[dept][year];
-            students.sort((a, b) => b.points - a.points);
-
-            let tableRows = students.map(
-                (s, i) => `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${s.name}</td>
-                    <td>${s.reg}</td>
-                    <td>${s.points}</td>
-                    <td>${s.cert ? `<img src="${s.cert}" class="cert-img">` : 'No Certificate'}</td>
-                </tr>`
-            ).join('');
-
-            if (!tableRows) tableRows = `<tr><td colspan="5">No records yet</td></tr>`;
-
-            document.getElementById('leaderboard').innerHTML = `
-                <h3>${dept} - Year ${year} Leaderboard</h3>
-                <table>
-                    <tr><th>Rank</th><th>Name</th><th>Register No</th><th>Points</th><th>Certificate</th></tr>
-                    ${tableRows}
-                </table>
-
-                <form onsubmit="addStudent(event,'${dept}',${year})">
-                    <input id="name" placeholder="Enter Full Name" required><br><br>
-                    <input id="reg" placeholder="Register Number" required><br><br>
-                    <select id="type">
-                        <option value="1">Participant (1 Point)</option>
-                        <option value="2">Runner-Up (2 Points)</option>
-                        <option value="3">Winner (3 Points)</option>
-                    </select><br><br>
-                    <input type="file" id="cert" accept="image/*"><br><br>
-                    <button type="submit">Add Student & Certificate</button>
-                </form>
-            `;
-        }
-
-        function addStudent(e, dept, year) {
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const reg = document.getElementById('reg').value.trim();
-            const type = parseInt(document.getElementById('type').value);
-            const certFile = document.getElementById('cert').files[0];
-
-            const students = data[dept][year];
-            let existing = students.find(s => s.reg === reg);
-
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const certURL = event.target.result;
-
-                if (existing) {
-                    existing.points += type;
-                    if (certFile) existing.cert = certURL;
-                    alert(`${existing.name}'s points updated!`);
-                } else {
-                    if (students.length >= 75) {
-                        alert("Maximum of 60 students reached for this department-year!");
-                        return;
-                    }
-                    students.push({ name, reg, points: type, cert: certFile ? certURL : null });
-                    alert(`New student added: ${name}`);
-                }
-                showLeaderboard(dept, year);
-            };
-
-            if (certFile) {
-                reader.readAsDataURL(certFile);
-            } else {
-                if (existing) {
-                    existing.points += type;
-                    alert(`${existing.name}'s points updated!`);
-                } else {
-                    if (students.length >= 60) {
-                        alert("Maximum of 60 students reached for this department-year!");
-                        return;
-                    }
-                    students.push({ name, reg, points: type, cert: null });
-                    alert(`New student added: ${name}`);
-                }
-                showLeaderboard(dept, year);
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
