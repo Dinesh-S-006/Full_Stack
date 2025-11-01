@@ -2,277 +2,99 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Nandha Engineering College - Annual Day Points</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <title>Nandha Engineering College - Certificate Validation Portal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- General Styles --- */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #eef2f3, #8e9eab);
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            color: #333;
-        }
-
-        h1 {
-            margin-top: 40px;
-            font-size: 48px;
-            color: #004aad;
-        }
-
-        h2 {
-            font-size: 28px;
-            color: #007bff;
-            margin-bottom: 30px;
-        }
-
-        h3 {
-            color: #333;
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-
-        /* --- Button Styles --- */
-        button {
-            margin: 8px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        button:hover {
-            transform: scale(1.08);
-            background: linear-gradient(135deg, #0056b3, #003f8a);
-        }
-
-        /* --- Table Styles --- */
-        table {
-            margin: 25px auto;
-            border-collapse: collapse;
-            width: 90%;
-            background: #ffffffdd;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        th {
-            background: #007bff;
-            color: white;
-            padding: 14px;
-            font-size: 16px;
-        }
-
-        td {
-            border-bottom: 1px solid #ccc;
-            padding: 12px;
-            font-size: 15px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f6ff;
-        }
-
-        /* --- Form Styles --- */
-        form {
-            margin-top: 20px;
-            background: #ffffffdd;
-            padding: 25px;
-            display: inline-block;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        input,
-        select {
-            width: 250px;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 6px #007bff66;
-        }
-
-        /* --- Certificate Image --- */
-        img.cert-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            object-fit: cover;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        /* --- Department Buttons Container --- */
-        #departments {
-            margin: 20px 0;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 32px;
-            }
-
-            h2 {
-                font-size: 22px;
-            }
-
-            button {
-                width: 90%;
-            }
-
-            table {
-                font-size: 13px;
-            }
-
-            input,
-            select {
-                width: 90%;
-            }
-        }
-    </style>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Nandha Engineering College</h1>
-    <h2>Annual Day Points Portal</h2>
+    <header>
+        <img src="https://tse3.mm.bing.net/th/id/OIP.Dvm15TlvYv1PonUv6QZZqQHaFa?pid=Api&P=0&h=180" alt="College Logo">
+        <div class="college-info">
+            <h1>NANDHA ENGINEERING COLLEGE (AUTONOMOUS)</h1>
+            <h2>Approved by AICTE, New Delhi. Affiliated to Anna University, Chennai. Accredited by NAAC (A+) Grade &
+                NBA.</h2>
+            <div class="portal-title">Certificate Validation Portal</div>
+        </div>
+    </header>
 
-    <h3>Select Department</h3>
-    <div id="departments">
-        <button onclick="selectDept('Agricultural Engineering')">Agricultural Engineering</button>
-        <button onclick="selectDept('Artificial Intelligence and Data Science')">Artificial Intelligence and Data Science</button>
-        <button onclick="selectDept('Chemical Engineering')">Chemical Engineering</button>
-        <button onclick="selectDept('Information Technology')">Information Technology</button>
-        <button onclick="selectDept('Biomedical Engineering')">Biomedical Engineering</button>
-        <button onclick="selectDept('Civil Engineering')">Civil Engineering</button>
-        <button onclick="selectDept('Computer Science and Engineering')">Computer Science and Engineering</button>
-        <button onclick="selectDept('Cyber Security')">Cyber Security</button>
-        <button onclick="selectDept('Internet of Things')">Internet of Things</button>
-        <button onclick="selectDept('Electronics and Communication Engineering')">Electronics and Communication Engineering</button>
-        <button onclick="selectDept('Mechanical Engineering')">Mechanical Engineering</button>
-    </div>
+    <main class="container">
+        <h3 class="section-title">Select Department</h3>
 
-    <div id="years"></div>
-    <div id="leaderboard"></div>
+        <div id="departments" class="departments">
+            <div class="dept-card" onclick="selectDept('Agricultural Engineering')">
+                <img src="https://stepuprecruiting.com/wp-content/uploads/2022/03/job-opportunities-for-an-agricultural-engineer.jpg"
+                    alt="Agricultural">
+                <h4>Agricultural Engineering</h4>
+            </div>
 
-    <script>
-        const data = {};
+            <div class="dept-card" onclick="selectDept('Artificial Intelligence and Data Science')">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.8RB70HsW114YJZKPZ9PAcAHaEK?pid=Api&P=0&h=180"
+                    alt="AI & DS">
+                <h4>Artificial Intelligence & Data Science</h4>
+            </div>
 
-        function selectDept(dept) {
-            document.getElementById('years').innerHTML = `
-                <h3>${dept} Department - Select Year</h3>
-                <button onclick="showLeaderboard('${dept}',1)">1st Year</button>
-                <button onclick="showLeaderboard('${dept}',2)">2nd Year</button>
-                <button onclick="showLeaderboard('${dept}',3)">3rd Year</button>
-                <button onclick="showLeaderboard('${dept}',4)">4th Year</button>
-            `;
-            document.getElementById('leaderboard').innerHTML = "";
-        }
+            <div class="dept-card" onclick="selectDept('Chemical Engineering')">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.ODEwPrjstQcFutRjjyO-vQHaE7?pid=Api&P=0&h=180"
+                    alt="Chemical">
+                <h4>Chemical Engineering</h4>
+            </div>
 
-        function showLeaderboard(dept, year) {
-            if (!data[dept]) data[dept] = {};
-            if (!data[dept][year]) data[dept][year] = [];
+            <div class="dept-card" onclick="selectDept('Information Technology')">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.k2RhDXqJ6P93LxF7ajo-kAHaE1?pid=Api&P=0&h=180" alt="IT">
+                <h4>Information Technology</h4>
+            </div>
 
-            const students = data[dept][year];
-            students.sort((a, b) => b.points - a.points);
+            <div class="dept-card" onclick="selectDept('Computer Science and Engineering')">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.DtHfvYUbmoijZ2WRKjO3qgHaFj?pid=Api&P=0&h=180" alt="CSE">
+                <h4>Computer Science & Engineering</h4>
+            </div>
 
-            let tableRows = students.map(
-                (s, i) => `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${s.name}</td>
-                    <td>${s.reg}</td>
-                    <td>${s.points}</td>
-                    <td>${s.cert ? `<img src="${s.cert}" class="cert-img">` : 'No Certificate'}</td>
-                </tr>`
-            ).join('');
+            <div class="dept-card" onclick="selectDept('Electronics and Communication Engineering')">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.udiigqB7kbdmRFAN-ylqpQHaEo?pid=Api&P=0&h=180" alt="ECE">
+                <h4>Electronics & Communication Engineering</h4>
+            </div>
 
-            if (!tableRows) tableRows = `<tr><td colspan="5">No records yet</td></tr>`;
+            <div class="dept-card" onclick="selectDept('Cyber Security')">
+                <img src="https://img.freepik.com/premium-photo/cyber-security-images_1066950-212.jpg" alt="Cyber">
+                <h4>Cyber Security</h4>
+            </div>
 
-            document.getElementById('leaderboard').innerHTML = `
-                <h3>${dept} - Year ${year} Leaderboard</h3>
-                <table>
-                    <tr><th>Rank</th><th>Name</th><th>Register No</th><th>Points</th><th>Certificate</th></tr>
-                    ${tableRows}
-                </table>
+            <div class="dept-card" onclick="selectDept('Internet of Things')">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.S3CVUqgWuPf2wi72Xox8NgHaES?pid=Api&P=0&h=180" alt="IoT">
+                <h4>Internet of Things</h4>
+            </div>
 
-                <form onsubmit="addStudent(event,'${dept}',${year})">
-                    <input id="name" placeholder="Enter Full Name" required><br><br>
-                    <input id="reg" placeholder="Register Number" required><br><br>
-                    <select id="type">
-                        <option value="1">Participant (1 Point)</option>
-                        <option value="2">Runner-Up (2 Points)</option>
-                        <option value="3">Winner (3 Points)</option>
-                    </select><br><br>
-                    <input type="file" id="cert" accept="image/*"><br><br>
-                    <button type="submit">Add Student & Certificate</button>
-                </form>
-            `;
-        }
+            <div class="dept-card" onclick="selectDept('Mechanical Engineering')">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.SnaW8FZ8tz79295VtPik4QHaEc?pid=Api&P=0&h=180" alt="Mech">
+                <h4>Mechanical Engineering</h4>
+            </div>
 
-        function addStudent(e, dept, year) {
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const reg = document.getElementById('reg').value.trim();
-            const type = parseInt(document.getElementById('type').value);
-            const certFile = document.getElementById('cert').files[0];
+            <div class="dept-card" onclick="selectDept('Biomedical Engineering')">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.C9E4yVAgtGriacrZ2PDsEAHaE8?pid=Api&P=0&h=180" alt="BioMed">
+                <h4>Biomedical Engineering</h4>
+            </div>
 
-            const students = data[dept][year];
-            let existing = students.find(s => s.reg === reg);
+            <div class="dept-card" onclick="selectDept('Civil Engineering')">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.DMwC6IfHETEXd8G3lMSKHwHaFb?pid=Api&P=0&h=180" alt="Civil">
+                <h4>Civil Engineering</h4>
+            </div>
+        </div>
 
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const certURL = event.target.result;
+        <div id="years"></div>
+        <div id="leaderboard"></div>
+    </main>
 
-                if (existing) {
-                    existing.points += type;
-                    if (certFile) existing.cert = certURL;
-                    alert(`${existing.name}'s points updated!`);
-                } else {
-                    if (students.length >= 60) {
-                        alert("Maximum of 60 students reached for this department-year!");
-                        return;
-                    }
-                    students.push({ name, reg, points: type, cert: certFile ? certURL : null });
-                    alert(`New student added: ${name}`);
-                }
-                showLeaderboard(dept, year);
-            };
+    <footer>
+        © 2025 Nandha Engineering College | Designed by Dare2Complete
+    </footer>
 
-            if (certFile) {
-                reader.readAsDataURL(certFile);
-            } else {
-                if (existing) {
-                    existing.points += type;
-                    alert(`${existing.name}'s points updated!`);
-                } else {
-                    if (students.length >= 60) {
-                        alert("Maximum of 60 students reached for this department-year!");
-                        return;
-                    }
-                    students.push({ name, reg, points: type, cert: null });
-                    alert(`New student added: ${name}`);
-                }
-                showLeaderboard(dept, year);
-            }
-        }
-    </script>
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
 </body>
 
 </html>
